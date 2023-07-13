@@ -1,11 +1,12 @@
 <?php
 header('Access-Control-Allow-Origin: *');
-header('Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With');
-header('Content-type: application/json; charset=UTF-8');
+header("Access-Control-Allow-Headers: X-API-KEY, Origin, X-Requested-With, Content-Type, Accept, Access-Control-Request-Method");
+header("Access-Control-Allow-Methods: GET, POST, OPTIONS, PUT, DELETE");
+header("Allow: GET, POST, OPTIONS, PUT, DELETE");
+
 $Serverpath = $_SERVER['DOCUMENT_ROOT'];
 require_once($Serverpath."/back/inc/Config.php");
 
-$headers = apache_request_headers();
 
 $method = $_SERVER['REQUEST_METHOD'];
 
@@ -121,9 +122,6 @@ switch ($method) {
 
         try {
             $lista = array();
-           // $conn = mysqli_connect('localhost:3306', 'root', 'root') or die("Error connecting");
-            //mysqli_select_db($conn, 'videojuegos_lista');
-            //mysqli_query($conn, "SET lc_time_names = 'es_ES'");
 
             $sqlString = "SELECT id,nombre,img,genero,estado FROM videojuego ";
             $result = $sqli -> query( $sqlString);
